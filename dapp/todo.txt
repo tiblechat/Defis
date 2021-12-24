@@ -141,6 +141,8 @@ state: registering, etc...
     add user
     move to next 
 
+
+
 - proposal page
     proposal list
     add proposal (greyed or not)
@@ -148,10 +150,67 @@ state: registering, etc...
 
 // 2. Build a static version of the app
 a) main, header, menu lateral, default page
+header:
+    - icon
+    - app name?
+    - blockchain
+    - connect button ou mauvais reseau (cf uniswap) ou amount & account
+
+component that displays: 
+bouton connect
+ou
+amount + account + blockchain
+ou 
+"bad network change to XXX"
+
+
+menu lateral:
+    - left
+
+- default page
+    - ?
+
 
 b) admin page
+en cours
+
+TODO faire un bouton dont le texte change en fonction du status
+mettre les bonnes valauers dans le stepper 
+hardcoder un state et lire ce state
+
+
+
 
 c) proposal page
+
+cf snapshot
+
+a gauche add proposal: grisé ou pas selon le status (et si white listé?) et si on a deja voté
+au mileu la liste des proposition 
+
+on peut cliquer pour la lire entierement (sinon ca va occuper trop de place si on met la proposition entiere)
+et sur la vue proposition il y a un bouton vote (grisé ou non)
+
+
+si on clique sur 
+d) add proposal page
+
+e) proposal page
+texte
+bouton vote
+
+** truc fonctionnel 
+
+** play css/ bootstrap
+
+dig a little in css/bootstrap, try to have CLEAN and understood code; customize a little
+1st steps in react bootstrap + css -> make tuts, try things
+
+regarder les thèmes, voir si je peux en apprendre/maitriser qquns pour eviter de tout refaire à chaque fois
+
+reecrire en bootstrap "pur" pas reatc-bootstrap
++ je pense que mes navbar etc, ça marche pas car il se superposent, il faudrait une grid generale pour les components
+
 
 // 3. Determine what should be stateful
 // 4. Determine in which component each piece of state should live
@@ -175,3 +234,6 @@ me faire les deux parcours web sur lynda
 + des parcours wen=b design/UX
 
 
+Notes
+
+utilisation de https://www.npmjs.com/package/react-stepper-horizontal

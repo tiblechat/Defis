@@ -9,7 +9,7 @@ import Table from 'react-bootstrap/Table';
 import VotingContract from "./contracts/Voting.json";
 import getWeb3 from "./getWeb3";
 import Navbar from "./Navbar";
-import "./App.css";
+//import "./App.css";
 
 class App extends Component {
   //state = { whitelist: [], web3: null, accounts: null, contract: null,testum:0 };

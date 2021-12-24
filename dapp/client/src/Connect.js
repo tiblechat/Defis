@@ -1,8 +1,9 @@
 
 import React, { Component } from "react";
+import { Button} from 'react-bootstrap';
 
 
-class Mainpage extends Component {
+class Connect extends Component {
 
     constructor(props) {
         super(props);
@@ -16,12 +17,10 @@ class Mainpage extends Component {
 
     render() {
         return (
-            <div class="container">
-                <h1>Main page</h1>
-            </div>
-
+ 
+            <Button>Connect</Button>
         );
     }
 }
 
-export default Mainpage;
+export default Connect;
