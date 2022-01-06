@@ -212,9 +212,23 @@ reecrire en bootstrap "pur" pas reatc-bootstrap
 + je pense que mes navbar etc, ça marche pas car il se superposent, il faudrait une grid generale pour les components
 
 
+A REPRENDRE, 
+(+ eventuelement BOOSTRAP FORMATION + CSS FORMATION + HTML FORMATION)
+
+
 // 3. Determine what should be stateful
+
+en cours j'enchaine ne parallele
+
 // 4. Determine in which component each piece of state should live
+je vais le faire en faisant la suite
+
 // 5. Hard-code initial states
+
+En cours
+
+
+
 // 6. Add inverse data flow
 // 7. Add server communication
 
@@ -222,8 +236,24 @@ reecrire en bootstrap "pur" pas reatc-bootstrap
 
 
 
-***************************** SUITE DAPP
+***************************** SUITE&FIN DAPP
++ revoir mon design bootstrap car certains trucs sont pourris:
 
+- la navbar trop large en hauteur
+- si on reduce le browser, les 3 élements du tableau se mettent en ligne
+- page principale devrait occuper tout l'écran, pourquoi tronquée en hauteur?
+
++ design react
+vite fait pour avancer mais trop de responsabilités dans main.js (les interactions contract)
+
+revoir la partie connect et surtout le fait d'être deconnecté à chaque erreur ou refus de transaction
+***************************** reprendre bootstrap + css, comprendre, verifier que tout est ok, améliorer
+et revoir de stutos bootstrap pour maitriser
++ revoir les tutos de boilerplate bootstrap + react + solidity pour m'en inspirer
+- revoir vraiment la partie design, trouver des formations pour MAITRISER LE DESIGN WEBSITE/html/css/bootstrap
++faire un beau site
+
+***************************** reprendre le txt est-ce qu ej'ai tout fait ce que je voulais
 
 ***************************** FIN DAPP
 future work: possibilité de faire plusieurs sessions de vote: add new session etc...
@@ -236,4 +266,5 @@ me faire les deux parcours web sur lynda
 
 Notes
 
-utilisation de https://www.npmjs.com/package/react-stepper-horizontal
+- utilisation de https://www.npmjs.com/package/react-stepper-horizontal
+- mon menu aurait pu être dans la navbar (comme kyberswap)

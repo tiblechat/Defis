@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 //import Identicon from "identicon.js"; //user profile
-import dtube from "./images/dtube.png"; //logo
+import dtube from "../images/dtube.png"; //logo
 
-class Navbar extends Component {
+class NavbarUnused extends Component {
   render() {
     return (
       <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow text-monospace">
@@ -56,4 +56,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default NavbarUnused;

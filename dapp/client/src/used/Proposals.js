@@ -17,20 +17,48 @@ class Proposals extends Component {
     handleClickButton() {
 
         console.log("bouton cliqued");
-        this.props.onPageChangedClicked(3);
+        this.props.onPageChangedClicked(3,-1);
     }
 
-    handleClickText() {
+    handleClickText(index) {
         console.log("texte cliqued");
-        this.props.onPageChangedClicked(4);
+        this.props.onPageChangedClicked(4,index);
     }
 
     componentDidMount = async () => {
 
     };
 
-
+    // {people.map((person, index) => (
+    //     <p key={index}>{person.name}</p>
+    //   ))}
     render() {
+        var listDisplayed;
+        if (typeof this.props.proposals !== 'undefined') {
+
+
+            listDisplayed = (this.props.proposals.map((propo, index) =>
+            (
+                // <p key={index}>{person.name}</p>
+                <li key={index} class="list-group-item">
+
+                    <div class="card" onClick={() => this.handleClickText(index)}>
+                        <div class="card-body">
+                            {/* <h4 class="card-title">TODO</h4> */}
+                            <p class="card-text">{propo.description}</p>
+                            <p class="card-text">{propo.voteCount}</p>
+                            <a href="#" class="card-link">Go to proposal</a>
+                        </div>
+                    </div>
+
+                </li>
+            )
+            ))
+        } else {
+            listDisplayed = <h1>TODO</h1>;
+        }
+
+
         return (
             <div className="Proposals">
 
@@ -53,7 +81,13 @@ class Proposals extends Component {
 
                             <div class="w-100">
                                 <ul class="list-group">
-                                    <li class="list-group-item">
+
+                                    {listDisplayed}
+
+
+                              
+
+                                    {/* <li class="list-group-item">
 
                                         <div class="card" onClick={() => this.handleClickText()}>
                                             <div class="card-body">
@@ -73,7 +107,8 @@ class Proposals extends Component {
                                                 <a href="#" class="card-link">Go to proposal</a>
                                             </div>
 
-                                        </div></li>
+                                        </div>
+                                        </li>
                                     <li class="list-group-item">
 
                                         <div class="card" onClick={() => this.handleClickText()}>
@@ -83,7 +118,13 @@ class Proposals extends Component {
                                                 <a href="#" class="card-link">Go to proposal</a>
                                             </div>
 
-                                        </div></li>
+                                        </div>
+                                        </li>
+ */}
+
+
+
+
                                 </ul>
                             </div>
                             {/* <ListGroup variant="flush">

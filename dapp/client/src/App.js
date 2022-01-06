@@ -7,8 +7,8 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Table from 'react-bootstrap/Table';
 import VotingContract from "./contracts/Voting.json";
-import getWeb3 from "./getWeb3";
-import Navbar from "./Navbar";
+import getWeb3 from "./used/getWeb3";
+import NavbarUnused from "./unused/Navbar";
 //import "./App.css";
 
 class App extends Component {
@@ -148,7 +148,7 @@ class App extends Component {
     }
     return (
     <div className="App">
-        <Navbar account={this.state.accounts[0]} />
+        <NavbarUnused account={this.state.accounts[0]} />
          <div>
        <h2 className="text-center">Système d'une liste blanche</h2>
        <hr></hr>

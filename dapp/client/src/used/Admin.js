@@ -12,54 +12,86 @@ class Admin extends Component {
         super();
         this.state = {
             steps: [{
-                title: 'Step One',
-                href: 'http://example1.com',
-                onClick: (e) => {
-                    e.preventDefault()
-                    console.log('onClick', 1)
-                }
+                title: 'Start whitelisting',
+                // href: 'http://example1.com',
+                // onClick: (e) => {
+                //     e.preventDefault()
+                //     console.log('onClick', 1)
+                // }
             }, {
-                title: 'Step Two',
-                href: 'http://example2.com',
-                onClick: (e) => {
-                    e.preventDefault()
-                    console.log('onClick', 2)
-                }
+                title: 'Start proposal registration',
+                // href: 'http://example2.com',
+                // onClick: (e) => {
+                //     e.preventDefault()
+                //     console.log('onClick', 2)
+                // }
             }, {
-                title: 'Step Three (Disabled)',
-                href: 'http://example3.com',
-                onClick: (e) => {
-                    e.preventDefault()
-                    console.log('onClick', 3)
-                }
+                title: 'End proposal registration',
+                // href: 'http://example3.com',
+                // onClick: (e) => {
+                //     e.preventDefault()
+                //     console.log('onClick', 3)
+                // }
             }, {
-                title: 'Step Four',
-                href: 'http://example4.com',
-                onClick: (e) => {
-                    e.preventDefault()
-                    console.log('onClick', 4)
-                }
-            }],
-            currentStep: 0,
+                title: 'Start voting',
+                // href: 'http://example4.com',
+                // onClick: (e) => {
+                //     e.preventDefault()
+                //     console.log('onClick', 4)
+                // }
+            },
+            {
+                title: 'End voting',
+                // href: 'http://example4.com',
+                // onClick: (e) => {
+                //     e.preventDefault()
+                //     console.log('onClick', 4)
+                // }
+            },
+            {
+                title: 'Count votes',
+                // href: 'http://example4.com',
+                // onClick: (e) => {
+                //     e.preventDefault()
+                //     console.log('onClick', 4)
+                // }
+            }
+        
+        
+        ],
+            
         };
         this.onClickNext = this.onClickNext.bind(this);
+        this.onAuthorize = this.onAuthorize.bind(this);
     }
 
-    onClickNext() {
-        const { steps, currentStep } = this.state;
-        this.setState({
-            currentStep: currentStep + 1,
-        });
+    onAuthorize() {
+      console.log("autorize");
+      this.props.onWhitelistButton(this.address);
     }
+
+
+    onClickNext() {
+       console.log("button next cliqued");
+        this.props.onNextStepButton();
+
+        // if transaction is ok, update state (maybe not the best pattern)
+
+        
+    }
+
+
     componentDidMount = async () => {
 
     };
 
 
     render() {
-        const { steps, currentStep } = this.state;
+        const steps = this.state.steps;
+        var currentStep = this.props.currentStep;
         const buttonStyle = { background: '#E0E0E0', width: 200, padding: 16, textAlign: 'center', margin: '0 auto', marginTop: 32 };
 
+  
 
 
         return (
@@ -71,7 +103,8 @@ class Admin extends Component {
                     <Card style={{ width: '50rem' }}>
                         <Card.Header><strong>Voting status</strong></Card.Header>
                         <Card.Body>
-                            <Stepper steps={steps} activeStep={currentStep} disabledSteps={[2]} />
+                            {/* <Stepper steps={steps} activeStep={currentStep} disabledSteps={[2]} /> */}
+                            <Stepper steps={steps} activeStep={currentStep}/>
                             <div style={buttonStyle} onClick={this.onClickNext}>Next</div>
                         </Card.Body>
                     </Card>
@@ -86,7 +119,7 @@ class Admin extends Component {
                                     ref={(input) => { this.address = input }}
                                 />
                             </Form.Group>
-                            <Button variant="dark" > Autoriser </Button>
+                            <Button variant="dark" onClick={this.onAuthorize}> Autoriser </Button>
 
 
                         </Card.Body>

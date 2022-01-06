@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.6.11;
-
+pragma experimental ABIEncoderV2;
 
 
 //import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
@@ -58,11 +58,22 @@ contract Voting is Ownable {
    {
        return (msg.sender == owner());
    }
-   function getAdresses() public returns (address[] memory)
+
+
+   function getProposals() public view returns (Proposal[] memory)
+   {
+      return proposals;
+   }
+
+   function getAdresses() public view returns (address[] memory)
    {
       return whitelistAdresses;
    }
 
+   function getStatus() public view returns (WorkflowStatus)
+   {
+      return votingStatus;
+   }
    function changeStatus(WorkflowStatus newStatus) internal onlyOwner
    {
        WorkflowStatus oldStatus = votingStatus;

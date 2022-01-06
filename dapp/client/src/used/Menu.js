@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 //import "./styles.css";
 class Menu extends React.Component {
-    state = { active: !this.props.open || true };
+    //state = { active: !this.props.open || true };
 
 
     constructor(props) {
@@ -17,7 +17,7 @@ class Menu extends React.Component {
     handleClick(linkNumber) {
         //e.preventDefault();
         console.log(linkNumber);
-        this.props.onLinkClicked(linkNumber);
+        this.props.onLinkClicked(linkNumber,-1);
     }
 
 
@@ -25,8 +25,8 @@ class Menu extends React.Component {
 
 
     render = () => {
-        const { open } = this.props;
-        const active = !open;
+        // const { open } = this.props;
+        // const active = !open;
 
         return (
             <div id="wrapper" className="toggled">
