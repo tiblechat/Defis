@@ -19,7 +19,7 @@ class MainpageSelector extends Component {
 
     handleClick(linkNumber,propNumber) {
         //e.preventDefault();
-        console.log(linkNumber);
+       // console.log(linkNumber);
         this.props.onPageChangedClicked(linkNumber,propNumber);
     }
    
@@ -33,8 +33,9 @@ class MainpageSelector extends Component {
 
 
         if (this.props.curPage === 0) {
+           
             return (
-                <Mainpage />
+                <Mainpage proposals = {this.props.proposals} connectStatus = {this.props.connectStatus} winningId = {this.props.winningId} currentStep  ={this.props.currentStep} />
             );
 
         }

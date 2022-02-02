@@ -31,7 +31,7 @@ class NavbarSimple extends Component {
   render() {
 
     return (
-      <Navbar>
+      <Navbar >
         <Navbar.Brand href="#home" className="ml-auto">
           <img
             alt=""

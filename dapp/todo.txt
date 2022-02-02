@@ -24,10 +24,11 @@ aux électeurs inscrits de voter pour leurs propositions préférées.
 à l'administrateur de comptabiliser les votes.
 à tout le monde de consulter le résultat.
 
-
-Q: offre-t-on la possibilité de refaire le process? un nouveau vote?
+VIDEO: 
+AMELIORATIONS offre-t-on la possibilité de refaire le process? un nouveau vote?
 un truc à la snapshot sauf qu'au lieu de la liste des projets on a la liste des sessions de vote
 et on fait "new voting session"
+
 
 Les recommandations et exigences :
 
@@ -43,198 +44,46 @@ Lien vers votre répertoire Github.
 
 
 
-*************** TODO
-message qui dit si on n'est pas sur la bonne blockchain
-gestion changement de compte
-
-admin page/voting page?
-ui voir bootstrap
-
-
-*************** road map
-
-
-- whitelist register
-
-- message qui dit si on n'est pas sur la bonne blockchain
-gestion changement de compte
-+afficher la chain dans la navbar et indiquer si wrong chain
+*************** TODO/bugs
 
 - gestion erreur si compte non autorisé (non owner)
 
-j'ai la log mas voir si on peut faire mieux + colorer le compte dans navbar selon ses droits!
+j'ai la log mais voir si on peut faire mieux + colorer le compte dans navbar selon ses droits!
+admin précisé dans l'en tête
 
 
-+ voir ceci pour les best practices metamask
-https://docs.metamask.io/guide/ethereum-provider.html
+- cacher la page admin si on n'est pas admin? ou bien griser
 
-- bouton "connect"?
+- gerer les erreurs de compte non whitelisté, faire une popup 
 
+
+
+
+
+
+
+- bugs divers:
+
+** identicon not working
+
+** parfois au demarrage bouton connect ne marche pas
+
+** qques erreurs react dans certains cas (exceptions je pense, il faudrait gérer mieux)
+
+- REACT/UI design& learn 
+
+design joli et fonctionnel, app qui a l'air pro
+
+creuser bootstrap/react, peaufiner, faire des tutos pour tout comprendre
+faire une appli jolie, fonctionnelle et maitrisée
+voir les apps pro et ce que je peux recuperer
+themes?
+
+(+ eventuelement BOOSTRAP FORMATION + CSS FORMATION + HTML FORMATION)
 - ce serait cool d'arriver  m'inspirer du code source d'une dapp "classqie" avec gestion du reseau, de l'account et bouton connect
 maybe scaffold? chercher sur le web des templates --> an cours avec la box custom redux
-- bugs:
 
-** must provide an ethereum address at start (peut etre resolu avec la gestion de changement de compte)
-** identicon not working
-** navbar de dtube, mord sur la dapp
-** gestion mauvaise chaine
-** bug: possibilité d'autoriser 2 x le meme compte (en tous cas il apparait 2 x dans la liste)
-- start proposal regsiter 
-
-- UI: clean/understand current make new, check real websites, bootstrap tuts
-
-- penser aux components, 1 component par fonctiounnalité (cf livre)
-
-- admin page vs client page
-navbar?
-
-
-*********************************
-
-- admin change status client proposal registration
-
-- design admin: pour le moment un bouton par etat 
--> faire mieux: proposer le bouton correspondant à l'état suivant?
-griser les boutons non utilisables?
-voir l'existant...
-
-- affichier l'état courant (startregistration, startvote, etc...)
-
-DESIGN BASIC MAIS FONCTIONNEL PUIS REPRISE DES POINTS PRECEDENTS
-PAS TROP DE CSS POUR LE MOMENT MAIS REACT PROPRE ET BIEN STRUCTURE
-
-
-- admin page: register user, change state
-- register proposal page
-- vote page? (ou la meme que register)
-
-** menu lateral (cf snapshot): admin page, "user" page (trouver un meilleur nom)
-** admin page: whitelist display , add user
-display current state, change state, display previous and next
-
-** proposals page
-add proposal
-display proposal list
-desactiver la creation de proposition si on n'est pas dans le bon state 
-
-vote (+ display has already voted or not)
-indiquer le statut de manière globale
-
-
-REACT
-
-// workflow simplifié histoire de me smplifier la suite (mais pas me prendre trop la tête)
-
-// 1. Break the app into components
-
-- main qui contient le reste 
-
-- header: app name, icon, account, blockchain, connect button
-state: registering, etc...
-
-- menu lateral
-    - pages 
-
-- default page: app name, image
-- admin page
-    white list
-    add user
-    move to next 
-
-
-
-- proposal page
-    proposal list
-    add proposal (greyed or not)
-    vote (greyed or not)
-
-// 2. Build a static version of the app
-a) main, header, menu lateral, default page
-header:
-    - icon
-    - app name?
-    - blockchain
-    - connect button ou mauvais reseau (cf uniswap) ou amount & account
-
-component that displays: 
-bouton connect
-ou
-amount + account + blockchain
-ou 
-"bad network change to XXX"
-
-
-menu lateral:
-    - left
-
-- default page
-    - ?
-
-
-b) admin page
-en cours
-
-TODO faire un bouton dont le texte change en fonction du status
-mettre les bonnes valauers dans le stepper 
-hardcoder un state et lire ce state
-
-
-
-
-c) proposal page
-
-cf snapshot
-
-a gauche add proposal: grisé ou pas selon le status (et si white listé?) et si on a deja voté
-au mileu la liste des proposition 
-
-on peut cliquer pour la lire entierement (sinon ca va occuper trop de place si on met la proposition entiere)
-et sur la vue proposition il y a un bouton vote (grisé ou non)
-
-
-si on clique sur 
-d) add proposal page
-
-e) proposal page
-texte
-bouton vote
-
-** truc fonctionnel 
-
-** play css/ bootstrap
-
-dig a little in css/bootstrap, try to have CLEAN and understood code; customize a little
-1st steps in react bootstrap + css -> make tuts, try things
-
-regarder les thèmes, voir si je peux en apprendre/maitriser qquns pour eviter de tout refaire à chaque fois
-
-reecrire en bootstrap "pur" pas reatc-bootstrap
-+ je pense que mes navbar etc, ça marche pas car il se superposent, il faudrait une grid generale pour les components
-
-
-A REPRENDRE, 
-(+ eventuelement BOOSTRAP FORMATION + CSS FORMATION + HTML FORMATION)
-
-
-// 3. Determine what should be stateful
-
-en cours j'enchaine ne parallele
-
-// 4. Determine in which component each piece of state should live
-je vais le faire en faisant la suite
-
-// 5. Hard-code initial states
-
-En cours
-
-
-
-// 6. Add inverse data flow
-// 7. Add server communication
-
-
-
-
+voir mes notes onenote, voir si je peux me faire un template, me faire les tutos/videos de templates
 
 ***************************** SUITE&FIN DAPP
 + revoir mon design bootstrap car certains trucs sont pourris:
@@ -246,25 +95,42 @@ En cours
 + design react
 vite fait pour avancer mais trop de responsabilités dans main.js (les interactions contract)
 
-revoir la partie connect et surtout le fait d'être deconnecté à chaque erreur ou refus de transaction
+
 ***************************** reprendre bootstrap + css, comprendre, verifier que tout est ok, améliorer
 et revoir de stutos bootstrap pour maitriser
 + revoir les tutos de boilerplate bootstrap + react + solidity pour m'en inspirer
 - revoir vraiment la partie design, trouver des formations pour MAITRISER LE DESIGN WEBSITE/html/css/bootstrap
 +faire un beau site
 
-***************************** reprendre le txt est-ce qu ej'ai tout fait ce que je voulais
+
+
+
+***************************** deployer
+un testnet + heroku ou un truc du style
 
 ***************************** FIN DAPP
 future work: possibilité de faire plusieurs sessions de vote: add new session etc...
 
+
+
 ***************************** A LA FIN
 
 me faire les deux parcours web sur lynda
-+ des parcours wen=b design/UX
++ des parcours web design/UX
 
 
 Notes
 
 - utilisation de https://www.npmjs.com/package/react-stepper-horizontal
 - mon menu aurait pu être dans la navbar (comme kyberswap)
+- comme ma page courante est gérée via un state au lieu d'une url, je ne peux pas faire un reload
+--> 2 questions:
+    - comment gérer un reject de transaction metamask, la seule chose qui ne casse pas tout actuellement est un reload
+    --> autre méthode?
+
+    - est-ce possible/conseillé d'avoir des url au lieu d'un state pour la page courante, ça me permettrait de 
+    faire un reload et de garder la page courante
+
+--> pour le moment je garde en session et je reload, voir des exemples de ce qu'il faudrait faire
+
+il me semble que les dapps habituellement, quand tu reject, ca fais comme si rien ne s'était passé.

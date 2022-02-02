@@ -54,6 +54,18 @@ contract Voting is Ownable {
    event WorkflowStatusChange(WorkflowStatus previousStatus, WorkflowStatus newStatus);
 
 
+//    function resetContract() public onlyOwner 
+//    {
+//        votingStatus = WorkflowStatus.RegisteringVoters;
+//        winningProposalId = 0;
+
+//           address[] public whitelistAdresses;
+//    mapping(address=> Voter) public whitelist;
+//    Proposal[] public proposals;
+   
+//    }
+
+
    function isOwner() public view returns (bool result)
    {
        return (msg.sender == owner());
@@ -85,6 +97,7 @@ contract Voting is Ownable {
    function register(address _address) public onlyOwner
    {
        require(votingStatus == WorkflowStatus.RegisteringVoters);
+       require( whitelist[_address].isRegistered == false);
        // proposal index 0 means no proposal
        whitelist[_address] =  Voter(true, false,0);
        whitelistAdresses.push(_address);
@@ -183,6 +196,13 @@ contract Voting is Ownable {
        return proposals[winningProposalId].description;
    }
 
+   function GetWinningProposalId() public view returns (uint)
+   {
+
+       require((winningProposalId >= 0) && (winningProposalId < proposals.length));
+       require(votingStatus == WorkflowStatus.VotesTallied);
+       return winningProposalId;
+   }
 
    function GetVoteFromAddress(address _address) public view returns (string memory)
    {

@@ -16,12 +16,12 @@ class Proposals extends Component {
 
     handleClickButton() {
 
-        console.log("bouton cliqued");
+       
         this.props.onPageChangedClicked(3,-1);
     }
 
     handleClickText(index) {
-        console.log("texte cliqued");
+       
         this.props.onPageChangedClicked(4,index);
     }
 
@@ -46,10 +46,15 @@ class Proposals extends Component {
                         <div class="card-body">
                             {/* <h4 class="card-title">TODO</h4> */}
                             <p class="card-text">{propo.description}</p>
-                            <p class="card-text">{propo.voteCount}</p>
                             <a href="#" class="card-link">Go to proposal</a>
                         </div>
                     </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">{"Vote count: "+propo.voteCount}</p>
+                        </div>
+                    </div>
+
 
                 </li>
             )
@@ -59,90 +64,59 @@ class Proposals extends Component {
         }
 
 
+        var isProposal = false;
+        if (this.props.proposals.length > 0)
+        {
+            isProposal = true;
+        }
+
+
+        var col2;
+        
+        if (isProposal)
+        {
+            col2 =                      <div class="col-sm-9"> <div style={{ display: 'flex', justifyContent: 'center' }}>
+
+            <div class="w-100">
+                <ul class="list-group">
+
+                    {listDisplayed}
+
+
+              
+
+
+
+
+                </ul>
+            </div>
+
+        </div></div>;
+        }
+
         return (
             <div className="Proposals">
 
                 <div class="container">
                     <div class="row">
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <h1>Proposals</h1>
+                            <h1 class="px-0 align-middle text-white">Proposals</h1>
                         </div>
                     </div>
+                  
                     <div class="row">
-                        <div class="col-sm-3 bg-color1">
+                        <div class="col-sm-3">
                             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                <div class="container p-5 my-5 border">
+                                <div class="container p-5 my-5">
                                     <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                        <Button onClick={() => this.handleClickButton()} variant="dark" > Add new </Button>
+                                        <Button onClick={() => this.handleClickButton()} text-white bg-primary>New proposal</Button>
                                     </div>
                                 </div>
                             </div></div>
-                        <div class="col-sm-9 bg-color2"> <div style={{ display: 'flex', justifyContent: 'center' }}>
-
-                            <div class="w-100">
-                                <ul class="list-group">
-
-                                    {listDisplayed}
-
-
-                              
-
-                                    {/* <li class="list-group-item">
-
-                                        <div class="card" onClick={() => this.handleClickText()}>
-                                            <div class="card-body">
-                                                <h4 class="card-title">proposal 1</h4>
-                                                <p class="card-text">Some example text. Some example text.</p>
-                                                <a href="#" class="card-link">Go to proposal</a>
-                                            </div>
-                                        </div>
-
-                                    </li>
-                                    <li class="list-group-item">
-
-                                        <div class="card" onClick={() => this.handleClickText()}>
-                                            <div class="card-body">
-                                            <h4 class="card-title">proposal 2</h4>
-                                                <p class="card-text">Some example text. Some example text. Some example text. Some example text.</p>
-                                                <a href="#" class="card-link">Go to proposal</a>
-                                            </div>
-
-                                        </div>
-                                        </li>
-                                    <li class="list-group-item">
-
-                                        <div class="card" onClick={() => this.handleClickText()}>
-                                            <div class="card-body">
-                                            <h4 class="card-title">proposal 3</h4>
-                                                <p class="card-text">Some example text. Some example text.</p>
-                                                <a href="#" class="card-link">Go to proposal</a>
-                                            </div>
-
-                                        </div>
-                                        </li>
- */}
-
-
-
-
-                                </ul>
-                            </div>
-                            {/* <ListGroup variant="flush">
-                                <ListGroup.Item>
-                                    <textarea onClick={() => this.handleClickText()}
-                                        className="form-control"
-                                        id="exampleFormControlTextarea1"
-                                        rows="5"> salut ca va
-        </textarea>
-                                </ListGroup.Item>
-                                <ListGroup.Item>Proposition 2</ListGroup.Item>
-                                <ListGroup.Item>Proposition 3</ListGroup.Item>
-                            </ListGroup> */}
-
-                        </div></div>
-                    </div>
-                </div>
-
+   
+                  
+                
+{col2}
 
                 {/* <Container>
                     <Row>
@@ -181,6 +155,8 @@ class Proposals extends Component {
 
                     </Row>
                 </Container> */}
+            </div>
+            </div>
             </div>
 
         );

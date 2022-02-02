@@ -66,13 +66,13 @@ class Admin extends Component {
     }
 
     onAuthorize() {
-      console.log("autorize");
+     
       this.props.onWhitelistButton(this.address);
     }
 
 
     onClickNext() {
-       console.log("button next cliqued");
+       
         this.props.onNextStepButton();
 
         // if transaction is ok, update state (maybe not the best pattern)

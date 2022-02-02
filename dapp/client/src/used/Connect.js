@@ -42,11 +42,21 @@ class Connect extends Component {
         else if (this.props.connectStatus === 1) {
             // CONNECTED
             return ( 
-                <div class="container">
-                    <div class="row">
+                <div class="container-fluid">
+                 <ul class="nav navbar-nav navbar-right">
+      {/* <li><a class="nav-link" href="#">Sign Up</a></li>
+      <li><a class="nav-link" href="#">Login</a></li> */}
+      <li><a class="nav-link maclasstextcolorwhite">{this.props.blockchain}</a></li>
+      <li><a class="nav-link maclasstextcolorwhite">{this.props.amount+ " ETH"}</a></li>
+      <li><a class="nav-link maclasstextcolorwhite">{this.props.account}</a></li>
+
+
+    </ul>
+
+                    {/* <div class="row">
                         <div class="col">
                         
-                            <div class="card">
+                            <div class="card h-50">
                                 <div class="card-body">
 
 
@@ -56,7 +66,7 @@ class Connect extends Component {
                             </div>
                         </div>
                         <div class="col">
-                            <div class="card">
+                            <div class="card h-50">
                                 <div class="card-body">
 
 
@@ -65,7 +75,7 @@ class Connect extends Component {
                             </div>
                         </div>
                         <div class="col">
-                            <div class="card">
+                            <div class="card h-50">
                                 <div class="card-body">
 
 
@@ -73,7 +83,7 @@ class Connect extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
 
             );
@@ -82,14 +92,14 @@ class Connect extends Component {
         else if (this.props.connectStatus === 2) {
             // CONNECTION ISSUE
             return (
-                <h3>invalid network</h3>
+                <h3 class="px-0 align-middle text-white">invalid network</h3>
             );
 
         }
         else {
             // CONNECTION ISSUE
             return (
-                <h3>invalid network</h3>
+                <h3 class="px-0 align-middle text-white">invalid network</h3>
             );
 
         }
