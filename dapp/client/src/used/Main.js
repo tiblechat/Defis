@@ -15,11 +15,17 @@ class Main extends Component {
         super(props);
         // current page in session state
         var page = parseInt(localStorage.getItem('currentpage'));
-        if (page === null) {
+        console.log("page courante = " + page);
+        if (page < 0)
+            page = 0;
+        if (page > 4)
+            page = 4;
+        if ((page === null) || (isNaN(page))) {
             page = 0;
         }
         var proposal = parseInt(localStorage.getItem('currentproposal'));
-        if (proposal === null) {
+        if ((proposal === null) ||(isNaN(proposal))) 
+        {
             proposal = 0;
         }
 
@@ -115,6 +121,8 @@ class Main extends Component {
                         chainname = "mainnet";
                     if (networkId === 5777)
                         chainname = "ganache";
+                    if (networkId === 42)
+                        chainname = "kovan";
                     // TODO: others if necessayry (if deployed)
                     var balEther = web3.utils.fromWei(bal, 'ether');
 
