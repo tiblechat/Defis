@@ -2,6 +2,10 @@ const Voting = artifacts.require("./Voting.sol");
 
 contract("Voting", accounts => {
 
+  // add one proposal per account
+  const prop0 = "proposition 0";
+  const prop1 = "proposition 1";
+  const prop2 = "proposition 2";
 
     // - check status nd other initializations
     
@@ -122,10 +126,7 @@ contract("Voting", accounts => {
 
     it("...should add proposals ok", async () => {
       const votingInstance = await Voting.deployed();
-      // add one proposal per account
-      const prop0 = "proposition 0";
-      const prop1 = "proposition 1";
-      const prop2 = "proposition 2";
+     
       try{
         await votingInstance.registerProposal(prop0,{ from: accounts[0] });
         await votingInstance.registerProposal(prop1,{ from: accounts[1] });
@@ -161,7 +162,7 @@ contract("Voting", accounts => {
         }
         catch(e){
           const status0 = await votingInstance.getStatus.call();
-          assert.equal(status0, 1, "Init status should still be start registering");
+          assert.equal(status0, 1, "status should still be start registering");
         }
 
 
@@ -171,7 +172,7 @@ contract("Voting", accounts => {
 
       const status1 = await votingInstance.getStatus.call();
 
-      assert.equal(status1, 2, "Init status should be end proposal registration");
+      assert.equal(status1, 2, "status should be end proposal registration");
 
 
 
@@ -179,8 +180,88 @@ contract("Voting", accounts => {
     // - change status/checkstatus start voting
     // - votes/check votes and check that voters have voted
     // - change status/checkstatus end voting 
+    it("...should change status to start voting and vote", async () => {
+      const votingInstance = await Voting.deployed();
+  
+
+ 
+
+      // should work
+      await votingInstance.startVotingSession({ from: accounts[0] });
+
+      const status1 = await votingInstance.getStatus.call();
+
+      assert.equal(status1, 3, "status should be start voting");
+
+      try{
+        // 0 vote for 0
+        // 1 and 2 vote for 1
+        // result should be 1
+        await votingInstance.Vote(0,{ from: accounts[0] });
+        await votingInstance.Vote(1,{ from: accounts[1] });
+        await votingInstance.Vote(1,{ from: accounts[2] });
+      }
+      catch(e){
+       
+        assert.equal(1, 0, "we should not have an exception here");
+      }
+
+      // check that they have voted
+      const voter0 = await votingInstance.whitelist.call(accounts[0]);
+      const voter1 = await votingInstance.whitelist.call(accounts[1]);
+      const voter2 = await votingInstance.whitelist.call(accounts[2]);
+
+      assert.equal(voter0.hasVoted, true, "account 0 voted");
+      assert.equal(voter1.hasVoted, true, "account 1 voted");
+      assert.equal(voter2.hasVoted, true, "account 2 voted");
+
+      // check nb of votes in props
+       // check that proposals are here and associated with 
+       const proposals = await votingInstance.getProposals.call();
+     
+       assert.equal(proposals[0].voteCount, 1, "proposal 0 nb votes OK");
+       assert.equal(proposals[1].voteCount, 2, "proposal 1 nb votes OK");
+       assert.equal(proposals[2].voteCount, 0, "proposal 2 nb votes OK");
+
+        // should work
+      await votingInstance.endVotingSession({ from: accounts[0] });
+
+      const status2 = await votingInstance.getStatus.call();
+
+      assert.equal(status2, 4, "status should be end voting");
+
+
+    });
+
+    
     // - change status/checkstatus count votes
     // - check results
+    it("...should change status to count votes and count votes", async () => {
+      const votingInstance = await Voting.deployed();
+  
+      // should work
+      await votingInstance.CountVotes({ from: accounts[0] });
+
+      const status1 = await votingInstance.getStatus.call();
+
+      assert.equal(status1, 5, "status should be vote counted");
+
+      // function GetWinningProposal() public view returns (string memory)
+      // function GetWinningProposalId() public view returns (uint)
+     
+      const winningId = await votingInstance.GetWinningProposalId.call();
+      const winningProposal = await votingInstance.GetWinningProposal.call();
+
+
+      assert.equal(winningId, 1, "winning proposal id not OK");
+      assert.equal(winningProposal, prop1, "account 1 voted");
+
+
+
+     
+    });
+
+    
 
 
 });
