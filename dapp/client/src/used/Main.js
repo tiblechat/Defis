@@ -74,20 +74,30 @@ class Main extends Component {
     componentDidMount = async () => {
         // automatic connect only if no previous error
         console.log("connect status: " + this.state.connectStatus);
-        //if (this.state.connectStatus === 0)
-            this.loadWeb3();
 
-        // // getter
-        // var page = localStorage.getItem('currentpage');
-        // if (page != null)
-        // {
-        //     console.log("********************* "+page);
-        //     this.setState({ currentpage:page});
-        // }
-        // else
-        // {
-        //     console.log("+++++++++++++++++++++++++ "+page);
-        // }
+        this.loadWeb3();
+
+        // note: le await et la suite bloque le reload au chgt de chain et de user
+        // // events
+        // let options = {
+        //     filter: {
+        //         value: [],
+        //     },
+        //     fromBlock: 0
+        // };
+        
+        // // let toto = VotingContract.getPastEvents( 'VoterRegistered', { fromBlock: 0, toBlock: 'latest' } )
+        // // console.log(toto);  
+
+        // const contract = this.state.thecontract;
+        // console.log(contract);  
+        // contract.events.VoterRegistered(options).on('data', event => console.log(event));
+
+        //console.log(VotingContract);
+        // VotingContract.events.VoterRegistered(options)
+        //     .on('data', event => console.log(event));
+
+
 
 
     };
@@ -135,8 +145,40 @@ class Main extends Component {
                     }, this.runInit);
 
                     console.log("contract found");
+
+                    let options = {
+                        filter: {
+                            value: [],
+                        },
+                        fromBlock: 0
+                    };
+
+                    // let toto = VotingContract.getPastEvents( 'VoterRegistered', { fromBlock: 0, toBlock: 'latest' } )
+                    // console.log(toto);   
+
+                    console.log("registering events"); 
+                    //instance.events.VoterRegistered(options).on('data', event => console.log(event));
+
+                    // try to run init again when something change
+                    // we could maybe: only use event to update component
+                    // or run a function which only read whitelist
+                    instance.events.VoterRegistered(options).on('data', event =>  this.runInit());
+                    instance.events.ProposalRegistered(options).on('data', event =>  this.runInit());
+                    instance.events.WorkflowStatusChange(options).on('data', event =>  this.runInit());
+                    instance.events.Voted(options).on('data', event =>  this.runInit());
+                    instance.events.VotesTallied(options).on('data', event =>  this.runInit());
+              
+
+                  
+                    // const pastEvents = await instance.getPastEvents('VoterRegistered', {
+                    //     fromBlock: 0,
+                    //     toBlock: 100
+                    //     });
+
+                    //     console.log(pastEvents);
+
                 }
-            }
+            } 
             else {
                 this.setState({
                     currentAccount: accounts[0].toString(), currentAmount: balEther.toString(),
@@ -145,7 +187,7 @@ class Main extends Component {
                 });
                 console.log("contract not found");
             }
-
+ 
 
             window.ethereum.on('accountsChanged', (accounts) => {
                 this.accountChanged(accounts);
